@@ -76,6 +76,37 @@ For more info, read the source of `deploy.php`.
    `deploy_develop.php` and configure them separately. In that case, the
    configuration files need to be named `deploy_master-config.php` and
    `deploy_develop-config.php` respectively.
+ * You need to have the public keys generated for www-data user (or apache/httpd user based on your server configuration).
+    Step 1: (ON YOUR SERVER)
+    # let's be root
+    sudo -i
+    ## go the apache folder
+    cd /var/www
+    ## create folder to store keys
+    mkdir .ssh
+    chown -R www-data:www-data .ssh
+    ## create keys
+    sudo -u www-data ssh-keygen -t ed25519 -C "your_email@example.com"
+    # click yes, yes in case you dont need a passphrase
+    ## Start the ssh-agent in the background.
+    eval "$(ssh-agent -s)"
+    ## add Key
+    ssh-add ~/.ssh/id_ed25519
+    ## Copy the generated Pub key to be pasted on github.com
+    tail /var/www/.ssh/id_ed25519.pub
+    # Attempts to ssh to GitHub
+    sudo -u www-data ssh -T git@github.com
+    Step 2:
+    Copy/Add the key displayed above in tail command to your github account or repo, Repo->Settings->Deploy Keys.
+    # type "yes"
+    Step 3: (OPTIONAL, in case you had used HTTPS like me, you need to change it to ssh git)
+    Cd to your git folder for e.g /var/www/my-project folder
+    nano .git/config
+    Change
+    url =  https://github.com/username/reponame
+    to
+    url = git@github.com:username/reponame.git
+
 
 ---
 
