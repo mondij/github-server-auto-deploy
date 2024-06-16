@@ -5,7 +5,7 @@
  * Automatically deploy the code using PHP and Git.
  *
  * @version 1.3.1
- * @link    https://github.com/markomarkovic/simple-php-git-deploy/
+ * @link    https://github.com/mondij/github-server-auto-deploy/
  */
 
 // =========================================[ Configuration start ]===
@@ -40,7 +40,7 @@ if (!defined('SECRET_ACCESS_TOKEN')) define('SECRET_ACCESS_TOKEN', 'BetterChange
  *
  * @var string
  */
-if (!defined('REMOTE_REPOSITORY')) define('REMOTE_REPOSITORY', 'https://github.com/markomarkovic/simple-php-git-deploy.git');
+if (!defined('REMOTE_REPOSITORY')) define('REMOTE_REPOSITORY', 'https://github.com/mondij/github-server-auto-deploy.git');
 
 /**
  * The branch that's being deployed.
